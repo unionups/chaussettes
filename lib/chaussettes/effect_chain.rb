@@ -2,6 +2,9 @@ require 'chaussettes/effect/fade'
 require 'chaussettes/effect/gain'
 require 'chaussettes/effect/synth'
 require 'chaussettes/effect/vol'
+require 'chaussettes/effect/norm'
+require 'chaussettes/effect/noise'
+
 
 module Chaussettes
 
@@ -51,9 +54,9 @@ module Chaussettes
       if positions.empty?
         raise ArgumentError, 'you must specify at least one position for trim'
       end
-
       @commands << 'trim'
       @commands.concat(positions)
+      p @commands
       self
     end
 
@@ -62,6 +65,20 @@ module Chaussettes
       @commands.concat(effect.commands)
       self
     end
+
+    def norm(lvl = -3)
+      effect = Effect::Norm.new(lvl)
+      @commands.concat(effect.commands)
+      self
+    end
+
+    def noise(noiseprof, nlvl: 0.21)
+      effect = Effect::Noise.new(noiseprof, nlvl: nlvl)
+      @commands.concat(effect.commands)
+      self
+    end
+
+
   end
 
 end

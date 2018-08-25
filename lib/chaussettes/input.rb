@@ -45,6 +45,8 @@ module Chaussettes
       @arguments << '--volume' << factor
       self
     end
+
+    
   end
 
 end

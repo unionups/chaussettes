@@ -48,6 +48,16 @@ module Chaussettes
       @arguments << '--compression' << factor
       self
     end
+
+    def noiseprof(trimstart=0, trimend=1)
+      @arguments << '-n' 
+      @arguments << 'trim'
+      @arguments << trimstart
+      @arguments << trimend
+      @arguments << 'noiseprof'
+      self
+    end
+
   end
 
 end
